@@ -1,0 +1,30 @@
+<div class="items-widget">
+  <div class="container">
+    <md-input-container>
+      <label>Enter Title</label>
+      <input ng-model="vm.data.newRow">
+    </md-input-container>
+    <md-button class="md-raised md-primary" ng-click="vm.addRow()"> Add Row </md-button>
+    <table class="md-whiteframe-2dp">
+      <thead>
+      <tr>
+        <th>Order</th>
+        <th>Item Name</th>
+        <th>Remove</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="row in vm.data.rows">
+        <td ng-bind="$index + 1"></td>
+        <td>
+          <span ng-show="!row.editMode" ng-bind="row.title" ng-click="vm.editRow(row)"></span>
+          <md-input-container class="row-input" ng-show="row.editMode">
+            <input row-id="{{row.id}}" ng-model="row.title" ng-blur="vm.submitRow(row)">
+          </md-input-container>
+        </td>
+        <td><a href ng-click="vm.removeRow(row)"><i class="material-icons red500">cancel</i></a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
